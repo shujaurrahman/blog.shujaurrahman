@@ -230,7 +230,7 @@ button {
 }
 
 .tags .hashtag:hover {
-  background: var(--primary);
+  background: #fff;
   color: var(--action-primary);
 }
 
