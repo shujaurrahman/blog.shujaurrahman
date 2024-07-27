@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="antialiased bg-gray-50 dark:bg-black min-h-screen">
+    <div id="__nuxt"><!--[-->
+        <div class="h-32"></div>
+        <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-2xl"><!--[-->
+            <main class="min-h-screen">
+                <div
+                    class="prose dark:prose-invert prose-blockquote:not-italic prose-pre:bg-gray-900 prose-img:ring-1 prose-img:ring-gray-200 dark:prose-img:ring-white/10 prose-img:rounded-lg">
+                    <article>
+                        <h1>How to Use Two GitHub Accounts on a Macbook the Right Way</h1>
+                        <div>
+                            <p>Recently, I joined HeadshotPro as a full-stack developer, completed my onboarding, and
+                                received an invitation to their GitHub organization. The catch? It was sent to my new
+                                email address, which was perfectly fine, except that I had already linked my personal
+                                GitHub account to my Macbook, which I use a lot, since I make a lot of side projects and
+                                some open-source contributions as well.</p>
+                            <p>Now, I faced two options: either create a new user on my Macbook for my work or use my
+                                existing user and add a new GitHub account to it. However, it wasn't that
+                                straightforward.</p>
+                            <p>My friend <a href="https://twitter.com/akshara_dev" rel="nofollow">Akshara Hegde</a>
+                                advised me to create a new SSH key and link it to my work GitHub account. He also
+                                suggested creating terminal aliases to switch between my personal and work GitHub
+                                accounts. While this method worked, it meant running a script each time I needed to
+                                switch, which was far from ideal. Here's what it looked like:</p>
+                            <pre class="language-bash shiki shiki-themes github-dark"><code><span class="line" line="1"><span style="--shiki-default: #F97583;">alias</span><span style="--shiki-default: #E1E4E8;"> git_personal</span><span style="--shiki-default: #F97583;">=</span><span style="--shiki-default: #9ECBFF;">"(ssh-agent) &amp;&amp; ssh-add ~/.ssh/personal"
+</span></span><span class="line" line="2"><span style="--shiki-default: #F97583;">alias</span><span style="--shiki-default: #E1E4E8;"> git_work</span><span style="--shiki-default: #F97583;">=</span><span style="--shiki-default: #9ECBFF;">"(ssh-agent) &amp;&amp; ssh-add ~/.ssh/work"
+</span></span></code></pre>
+                            <p>This meant that whenever I wanted to work on my personal projects, I had to run
+                                git_personal, and for work, it was git_work.</p>
+                            <p>I also found some other complicated solutions that involved SSH configs with different
+                                hostnames meant specifically for respective repositories.</p>
+                            <h3 id="the-solution"><a href="#the-solution">The solution</a></h3>
+                            <p>There had to be a better way, and I discovered that I could use conditional statements in
+                                my global .gitconfig file.</p>
+                            <p>The first step was to add the SSH key to my work GitHub account and create a folder named
+                                work. Any Git command or operation executed in this folder would automatically use my
+                                work credentials.</p>
+                            <h3 id="how-does-it-work"><a href="#how-does-it-work">How does it work?</a></h3>
+                            <p>Your existing .gitconfig file likely looks like this:</p>
+
+                            <p>That's it! Now, when you run any Git command in your Work folder, it will automatically
+                                use your work credentials, while in other locations, it will use your personal
+                                credentials.</p>
+                            <h3 id="how-do-we-test-this"><a href="#how-do-we-test-this">How do we test this?</a></h3>
+                            <p>Navigate to your work directory repositories and run the following command to check if
+                                it's using your work credentials:</p>
+
+                            <p>This command will only work if the folder you are running it in is a Git repository.</p>
+                            <br>
+                            <button type="button" class="px-3 py-2 text-s font-medium text-center text-grey hover:text-white rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">Take me Back → </button>
+
+                        </div>
+                    </article>
+                </div>
+            </main><!--]-->
+        </div>
+        <footer class="max-w-2xl mx-auto text-gray-400 dark:text-gray-600 text-sm text-center pb-8">
+            <p>© 2024 Shuja ur Rahman.</p>
+        </footer><!--]-->
+    </div>
+</body>
+</html>
