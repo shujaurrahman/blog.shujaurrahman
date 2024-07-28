@@ -2,13 +2,13 @@ const blogData = {
     posts: [
         {
             title: "Hello I am Shuja Ur Rahman.",
-            link: "shujaurrahman.github.io/blog.shujaurrahman//posts/about-shuja.md",
+            link: "shujaurrahman.github.io/blog.shujaurrahman/posts/about-shuja.md",
             description: "Hello to people out there this is shuja ",
             tags: ["Personal"],
             date: "2024-07-28"
         },{
             title: "Building a Modern Blog Website with Markdown, Tailwind CSS, and JavaScript",
-            link: "shujaurrahman.github.io/blog.shujaurrahman//posts/about.md",
+            link: "shujaurrahman.github.io/blog.shujaurrahman/posts/about.md",
             description: "How i created dynmaic blog website using markdown as source.",
             tags: ["About"],
             date: "2024-07-28"
