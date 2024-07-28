@@ -286,13 +286,13 @@ button {
   }
 
   .container {
-    max-width: 1150px;
+    max-width: 1300px;
   }
 
   .main .container {
     display: grid;
     grid-template-columns: 5fr 2fr;
-    gap: 60px;
+    gap: 40px;
   }
 
   .aside {
