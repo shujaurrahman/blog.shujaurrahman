@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .prose h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const postUrl = decodeURIComponent(urlParams.get('postUrl'));
+            const postTitle = decodeURIComponent(urlParams.get('postTitle'));
+
+            document.getElementById('post-title').innerText = postTitle;
+
+            fetch(postUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Network response was not ok: ${response.statusText}`);
+                    }
+                    return response.text();
+                })
+                .then(markdown => {
+                    // Extract metadata from markdown
+                    const metadata = parseFrontMatter(markdown);
+                    document.getElementById('post-meta').innerText = `Posted on: ${metadata.date} | From: ${metadata.place}`;
+                    document.getElementById('post-tags').innerText = `Tags: ${metadata.tags.join(', ')}`;
+
+                    // Remove metadata and render the markdown content
+                    const contentWithoutMetadata = markdown.replace(/^---\n[\s\S]+?\n---\n/, '');
+                    const htmlContent = marked.parse(contentWithoutMetadata);
+                    document.getElementById('post-content').innerHTML = htmlContent;
+                })
+                .catch(error => {
+                    document.getElementById('post-content').innerHTML = `<p>Failed to load content. Error: ${error.message}</p>`;
+                    console.error('Error fetching the Markdown file:', error);
+                });
+        });
+
+        function parseFrontMatter(markdown) {
+            const frontMatterRegex = /^---\n([\s\S]+?)\n---/;
+            const match = markdown.match(frontMatterRegex);
+            if (match) {
+                const frontMatter = match[1];
+                const lines = frontMatter.split('\n');
+                const metadata = {};
+                lines.forEach(line => {
+                    const [key, value] = line.split(':').map(str => str.trim());
+                    metadata[key] = value;
+                });
+                metadata.tags = metadata.tags ? metadata.tags.split(',').map(tag => tag.trim()) : [];
+                return metadata;
+            }
+            return {};
+        }
+
+        function goBack() {
+            window.location.href = 'http://localhost/blog.shujaurrahman/';
+        }
+    </script>
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-900 dark:text-gray-100 flex flex-col">
+    <div id="__nuxt" class="flex-grow">
+        <div class="h-16"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mb-12">
+            <button type="button" class="px-4 py-2 mb-6 text-sm font-semibold text-gray-700 hover:text-white bg-gray-200 hover:bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800" onclick="goBack()">← Take me home</button>
+            <main class="prose prose-lg dark:prose-dark prose-blockquote:not-italic prose-pre:bg-gray-900 prose-img:ring-1 prose-img:ring-gray-200 dark:prose-img:ring-white/10 prose-img:rounded-lg">
+                <article>
+                    <header class="mb-6">
+                        <h1 id="post-title" class="text-4xl font-bold mb-2">Loading...</h1>
+                        <p id="post-meta" class="text-sm text-gray-500 dark:text-gray-400"></p>
+                        <p id="post-tags" class="text-sm text-gray-500 dark:text-gray-400"></p>
+                    </header>
+                    <div id="post-content" class="prose dark:prose-invert">
+                        <!-- Markdown content will be rendered here -->
+                    </div>
+                </article>
+            </main>
+        </div>
+    </div>
+    <footer class="w-full text-gray-500 dark:text-gray-400 text-sm text-center py-6 bg-gray-100 dark:bg-gray-800 mt-auto">
+        <p>© 2024 Shuja ur Rahman.</p>
+    </footer>
+</body>
+</html>
