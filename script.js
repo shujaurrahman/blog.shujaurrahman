@@ -14,10 +14,10 @@ const blogData = {
             "date": "2024-07-29"
         }, {
             "title": "Back to Hostel: Summer’s End and Final Year Begins",
-            "link": "./posts/2024-08-10.md",
+            "link": "./posts/2024-08-11.md",
             "description": "Join me as I navigate the end of summer break and dive back into the hustle of hostel life and final year classes. From exciting projects to sleepless nights, get an inside look at the adventures and challenges of a tech student returning to campus.",
             "tags": ["Personal"],
-            "date": "2024-08-10",
+            "date": "2024-08-11",
             "isNew": true 
         }
         
