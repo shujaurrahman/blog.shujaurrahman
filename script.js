@@ -2,19 +2,19 @@ const blogData = {
     posts: [
         {
             "title": "Hello I am Shuja Ur Rahman.",
-            "link": "./posts/2024-07-28",
+            "link": "./posts/2024-07-28.md",
             "description": "Discover the journey of Shuja Ur Rahman—a tech enthusiast, coder, and student with a passion for all things digital. Dive into my world of gadgets, programming, and endless curiosity.",
             "tags": ["Personal"],
             "date": "2024-07-28"
         }, {
             "title": "Building a Modern Blog Website with Markdown, Tailwind CSS, and JavaScript",
-            "link": "./posts/2024-07-29",
+            "link": "./posts/2024-07-29.md",
             "description": "Ever wondered how to create a stunning, dynamic blog with Markdown and Tailwind CSS? Follow my step-by-step guide on building a modern blog website from scratch with these powerful tools.",
             "tags": ["About"],
             "date": "2024-07-29"
         }, {
             "title": "Back to Hostel: Summer’s End and Final Year Begins",
-            "link": "./posts/2024-08-10",
+            "link": "./posts/2024-08-10.md",
             "description": "Join me as I navigate the end of summer break and dive back into the hustle of hostel life and final year classes. From exciting projects to sleepless nights, get an inside look at the adventures and challenges of a tech student returning to campus.",
             "tags": ["About"],
             "date": "2024-08-10"
