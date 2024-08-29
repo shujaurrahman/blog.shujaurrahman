@@ -19,6 +19,14 @@ const blogData = {
             "tags": ["Personal"],
             "date": "2024-08-11",
             "isNew": true 
+        },
+        {
+            "title": "Integrate Spotify with Your Website: A Comprehensive Guide",
+            "link": "./posts/2024-08-30.md",
+            "description": "Integrating Spotify into your website can enhance user engagement by showcasing currently playing or recently played tracks. This guide provides a detailed overview of setting up a Spotify integration project, including configuration, code explanation, and deployment.",
+            "tags": ["Tutorial"],
+            "date": "2024-08-30",
+            "isNew": true 
         }
         
         // Add other blog posts with , post url and meta tags 
