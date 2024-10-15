@@ -16,11 +16,12 @@ const blogData = {
             "title": "Back to Hostel: Summer’s End and Final Year Begins",
             "link": "./posts/2024-08-10.md",
             "description": "Join me as I navigate the end of summer break and dive back into the hustle of hostel life and final year classes. From exciting projects to sleepless nights, get an inside look at the adventures and challenges of a tech student returning to campus.",
-            "tags": ["About"],
-            "date": "2024-08-10"
+            "tags": ["Personal"],
+            "date": "2024-08-10",
+            "isNew": true 
         }
         
-        // Add other blog posts similarly
+        // Add other blog posts with , post url and meta tags 
     ]
 };
 
@@ -30,8 +31,10 @@ function renderPosts(posts) {
     blogPostsContainer.innerHTML = '';
 
     posts.forEach(post => {
+        const isNew = post.isNew ? '<span class="new-tag">New</span>' : '';
         const postHTML = `
-            <div class="blog-card">
+            <div class="blog-card" style="position: relative;">
+                ${isNew}
                 <div class="blog-content-wrapper">
                     <button class="blog-topic text-tiny" onclick="filterPostsByTag('${post.tags.join(', ')}')">${post.tags.join(', ')}</button>
                     <h3>
@@ -45,6 +48,7 @@ function renderPosts(posts) {
         blogPostsContainer.insertAdjacentHTML('beforeend', postHTML);
     });
 }
+
 
 
 
