@@ -131,6 +131,19 @@
             const postUrl = decodeURIComponent(urlParams.get('postUrl'));
             const postTitle = decodeURIComponent(urlParams.get('postTitle'));
 
+            // Set the document title for SEO
+            document.title = `${postTitle} - Shuja ur Rahman | Web Developer & CS Student`;
+
+            // Add a meta description
+            const metaDescription = document.createElement('meta');
+            metaDescription.name = 'description';
+            document.head.appendChild(metaDescription);
+
+            // Add a meta keywords
+            const metaKeywords = document.createElement('meta');
+            metaKeywords.name = 'keywords';
+            document.head.appendChild(metaKeywords);
+
             document.getElementById('post-title').innerText = postTitle;
 
             fetch(postUrl)
@@ -145,6 +158,10 @@
                     const metadata = parseFrontMatter(markdown);
                     document.getElementById('post-meta').innerText = `Posted on: ${metadata.date} | From: ${metadata.place}`;
                     document.getElementById('post-tags').innerText = `Tags: ${metadata.tags.join(', ')}`;
+
+                    // Set the meta description and keywords
+                    metaDescription.content = metadata.description || "Shuja ur Rahman - Web Developer & CS Student | Blog on Coding & Technology";
+                    metaKeywords.content = metadata.tags.join(', ') || "web development, programming, technology";
 
                     // Remove metadata and render the markdown content
                     const contentWithoutMetadata = markdown.replace(/^---\n[\s\S]+?\n---\n/, '');
@@ -177,40 +194,6 @@
         function goBack() {
             window.location.href = 'index.html';
         }
-
-        document.addEventListener('DOMContentLoaded', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const postUrl = decodeURIComponent(urlParams.get('postUrl'));
-    const postTitle = decodeURIComponent(urlParams.get('postTitle'));
-
-    // Set the document title for SEO
-    document.title = `${postTitle} - Shuja ur Rahman | Web Developer & CS Student`;
-
-    document.getElementById('post-title').innerText = postTitle;
-
-    fetch(postUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Network response was not ok: ${response.statusText}`);
-            }
-            return response.text();
-        })
-        .then(markdown => {
-            // Extract metadata from markdown
-            const metadata = parseFrontMatter(markdown);
-            document.getElementById('post-meta').innerText = `Posted on: ${metadata.date} | From: ${metadata.place}`;
-            document.getElementById('post-tags').innerText = `Tags: ${metadata.tags.join(', ')}`;
-
-            // Remove metadata and render the markdown content
-            const contentWithoutMetadata = markdown.replace(/^---\n[\s\S]+?\n---\n/, '');
-            const htmlContent = marked.parse(contentWithoutMetadata);
-            document.getElementById('post-content').innerHTML = htmlContent;
-        })
-        .catch(error => {
-            document.getElementById('post-content').innerHTML = `<p>Failed to load content. Error: ${error.message}</p>`;
-            console.error('Error fetching the Markdown file:', error);
-        });
-});
 
     </script>
 </head>
