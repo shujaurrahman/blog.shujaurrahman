@@ -18,7 +18,6 @@ const blogData = {
             "description": "Join me as I navigate the end of summer break and dive back into the hustle of hostel life and final year classes. From exciting projects to sleepless nights, get an inside look at the adventures and challenges of a tech student returning to campus.",
             "tags": ["Personal"],
             "date": "2024-08-11",
-            "isNew": true 
         },
         {
             "title": "Integrate Spotify with Your Website: A Comprehensive Guide",
@@ -27,18 +26,28 @@ const blogData = {
             "tags": ["Tutorial"],
             "date": "2024-08-30",
             "isNew": true 
+        },  {
+                "title": "Implementing Fine-Tuned AI with JSON Context",
+                "link": "./posts/2024-10-26.md",
+                "description": "Learn how to deploy and interact with fine-tuned AI models using JSON context, with setup steps, code snippets, and optimization tips for any project.",
+                "tags": ["AI"],
+                "date": "2024-10-26",
+                "isNew": true
+              
         }
         
         // Add other blog posts with , post url and meta tags 
     ]
 };
 
-
 function renderPosts(posts) {
     const blogPostsContainer = document.getElementById('blog-posts');
     blogPostsContainer.innerHTML = '';
 
-    posts.forEach(post => {
+    // Sort posts in descending order by date
+    const sortedPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    sortedPosts.forEach(post => {
         const isNew = post.isNew ? '<span class="new-tag">New</span>' : '';
         const postHTML = `
             <div class="blog-card" style="position: relative;">
@@ -56,9 +65,6 @@ function renderPosts(posts) {
         blogPostsContainer.insertAdjacentHTML('beforeend', postHTML);
     });
 }
-
-
-
 
 function filterPostsByTag(tag) {
     const filteredPosts = blogData.posts.filter(post => post.tags.includes(tag));
