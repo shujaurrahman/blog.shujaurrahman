@@ -24,14 +24,23 @@ const blogData = {
             "link": "./posts/2024-08-30.md",
             "description": "Integrating Spotify into your website can enhance user engagement by showcasing currently playing or recently played tracks. This guide provides a detailed overview of setting up a Spotify integration project, including configuration, code explanation, and deployment.",
             "tags": ["Tutorial"],
-            "date": "2024-08-30",
-            "isNew": true 
-        },  {
+            "date": "2024-08-30" 
+        },
+        {
                 "title": "Implementing Fine-Tuned AI with JSON Context",
                 "link": "./posts/2024-10-26.md",
                 "description": "Learn how to deploy and interact with fine-tuned AI models using JSON context, with setup steps, code snippets, and optimization tips for any project.",
                 "tags": ["AI"],
                 "date": "2024-10-26",
+                "isNew": true
+              
+        },
+        {
+                "title": "Setting Up a CI/CD Pipeline with GitHub Actions for InfinityFree Deployment",
+                "link": "./posts/2024-10-30.md",
+                "description": "Continuous Integration and Continuous Deployment (CI/CD) pipeline is a powerful way to streamline and automate deployments.",
+                "tags": ["CI-CD"],
+                "date": "2024-10-30",
                 "isNew": true
               
         }
