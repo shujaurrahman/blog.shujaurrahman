@@ -30,5 +30,17 @@
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://blog-shujaurrahman.vercel.app/post.html?postUrl=.%2Fposts%2F2024-10-26.md&amp;gpostTitle=Implementing%20Fine-Tuned%20AI%20with%20JSON%20Context</loc>
+        <lastmod>2024-08-30</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://blog-shujaurrahman.vercel.app/post.html?postUrl=.%2Fposts%2F2024-10-30.md&amp;postTitle=Setting%20Up%20a%20CI%2FCD%20Pipeline%20with%20GitHub%20Actions%20for%20InfinityFree%20Deployment</loc>
+        <lastmod>2024-08-30</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
     <!-- Add more URLs as needed -->
 </urlset>
