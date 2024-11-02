@@ -159,6 +159,10 @@
                     document.getElementById('post-meta').innerText = `Posted on: ${metadata.date} | From: ${metadata.place}`;
                     document.getElementById('post-tags').innerText = `Tags: ${metadata.tags.join(', ')}`;
 
+                    // Calculate reading time
+                    const readingTime = calculateReadingTime(markdown);
+                    document.getElementById('post-reading-time').innerText = `${readingTime} min read.`;
+
                     // Set the meta description and keywords
                     metaDescription.content = metadata.description || "Shuja ur Rahman - Web Developer & CS Student | Blog on Coding & Technology";
                     metaKeywords.content = metadata.tags.join(', ') || "web development, programming, technology";
@@ -173,6 +177,16 @@
                     console.error('Error fetching the Markdown file:', error);
                 });
         });
+
+        function calculateReadingTime(markdown) {
+            // Count words in the markdown content
+            const totalWords = markdown.split(/\s+/).length;
+            // Use 200 words per minute as a standard reading speed
+            const wordsPerMinute = 200;
+            // Calculate reading time
+            const readingTime = Math.ceil(totalWords / wordsPerMinute);
+            return readingTime <= 0 ? 1 : readingTime; // Ensure at least 1 minute
+        }
 
         function parseFrontMatter(markdown) {
             const frontMatterRegex = /^---\n([\s\S]+?)\n---/;
@@ -194,7 +208,6 @@
         function goBack() {
             window.location.href = 'index.html';
         }
-
     </script>
 </head>
 <body class="bg-gray-100 min-h-screen text-gray-900 dark:text-gray-100 flex flex-col">
@@ -208,6 +221,7 @@
                         <h1 id="post-title" class="text-4xl font-bold mb-2">Loading...</h1>
                         <p id="post-meta" class="text-sm text-gray-500 dark:text-gray-400"></p>
                         <p id="post-tags" class="text-sm text-gray-500 dark:text-gray-400"></p>
+                        <p id="post-reading-time" class="text-sm text-gray-500 dark:text-gray-400"></p> <!-- Reading time display -->
                     </header>
                     <div id="post-content">
                         <!-- Markdown content will be rendered here -->
